@@ -143,6 +143,8 @@ To prevent temporal leakage, a time-based train-test split was implemented using
 
 Linear and tree models were developed and compared. The goal was to identify a model that could achieve high recall for suspicious transactions reasonable precision, handle extreme class imbalance, strong ranking ability(PR-AUC), low false negative and reasonable amount of false positive. 
 
+Different thresholds were populated to find the optimum precision, recall, false positive and false negative. 
+
 
 <h2 align="center">Logistic Regression (Baseline Model) </h2>
 
@@ -191,6 +193,8 @@ Linear and tree models were developed and compared. The goal was to identify a m
 
 <p>Key hyperparameters such as tree depth, learning rate, number of estimators, and regularisation parameters were tuned to optimise model performance. Hyperparameter tuning helps control model complexity, improve prediction accuracy, and reduce the risk of overfitting.
 
+The <code>scale_pos_weight</code> parameter was also used to address the severe class imbalance in the dataset by giving higher importance to laundering transactions during training. This helps the model focus more on detecting rare suspicious activity.
+
 • Strong predictive performance
 
 <p>XGBoost achieved strong predictive performance and improved upon the baseline logistic regression model. However, the Balanced Random Forest ultimately performed best in detecting laundering transactions due to its ability to handle class imbalance more effectively.
@@ -233,6 +237,13 @@ Assuming:
 | XGBoost | 345 | 984 | 17299.20 | 
 
 Balanced Random Forest was selected as the final model because it achieved the highest recall and PR-AUC, detected the most laundering transactions, and resulted in the lowest overall cost. Its ability to handle class imbalance through undersampling makes it particularly effective for rare-event detection in AML systems.
+
+<h2 align="center">Feature Importance Analysis</h2>
+
+Payment format and high-risk payment indicators are the strongest predictors of laundering activity. 
+
+Behavioural features such as transaction frequency, rolling transaction volatility, and recent transaction totals also play an important role, suggesting that unusual transaction patterns are key signals for detecting suspicious financial activity.
+
 
 ***
 
