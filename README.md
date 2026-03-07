@@ -223,8 +223,8 @@ probabilistically.
 | XGBoost | 0.92651 | 0.04974| 0.1544 | 0.0602 |
 
 Assuming:
-C_FN = 50000 - Cost of Missing Laundering (False Negative)
-C_FP = 50 - Cost of Investigating a False Alert (False Positive)
+<p>C_FN = 50000 - Cost of Missing Laundering (False Negative)
+<p>C_FP = 50 - Cost of Investigating a False Alert (False Positive)
 
 | | False Negative | False Positive | Total Cost | 
 |---|---|---|---|
