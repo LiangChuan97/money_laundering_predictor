@@ -6,7 +6,7 @@ Imbalance-resilient modelling for transaction-level AML detection
 
 <p align="center">
 <img src="https://img.shields.io/badge/Python-3.14-blue">
-<img src="https://img.shields.io/badge/Model-Balanced%20Random%20Forest-green">
+<img src="https://img.shields.io/badge/Models-Logistic%20Regression%20%7C%20⭐%20Balanced%20Random%20Forest%20%7C%20XGBoost-blue">
 <img src="https://img.shields.io/badge/Domain-AML-orange">
 <img src="https://img.shields.io/badge/Dataset-IBM%20Transactions-purple">
 </p>
@@ -35,7 +35,7 @@ Key highlights:
 
 ## 📑 Table of Contents
 
-- [Project Overview](#-project-Overview)
+- [Project Overview](#-project-overview)
 - [Business Problem](#-business-problem)
 - [Dataset](#-dataset)
 - [Data Cleaning](#-data-cleaning)
@@ -44,10 +44,10 @@ Key highlights:
 - [Model Development](#-model-development)
 - [Model Evaluation](#-model-evaluation)
 - [Key Results](#-key-results)
-- [Feature Importance](#-feature-importance-analysis)
+- [Feature Importance](#-feature-importance)
 - [Tech Stack](#-tech-stack)
 - [Strengths](#-strengths)
-- [Limitations](#-limitation)
+- [Limitations](#-limitations)
 - [Recommendations](#-recommendations)
 - [Conclusion](#-conclusion)
 
@@ -59,10 +59,9 @@ Machine learning approaches offer improved adaptability but must address signifi
 
 In the present dataset, laundering transactions constitute approximately 0.2% of total observations, making detection a rare-event classification problem.
 
-## 🌍 Why This Matters
+<h2 align="center">🌍 Why This Matters </h2>
 
-Money laundering is estimated to represent **2–5% of global GDP annually**.  
-Financial institutions rely on AML monitoring systems to detect suspicious activity while balancing operational investigation costs.
+Money laundering is estimated to represent **2–5% of global GDP annually**.Financial institutions rely on AML monitoring systems to detect suspicious activity while balancing operational investigation costs.
 
 This project demonstrates how **machine learning and behavioural feature engineering** can improve detection performance under extreme class imbalance conditions.
 
@@ -123,35 +122,35 @@ Key questions explored:
 These questions help identify patterns, anomalies, and key risk indicators associated with laundering transactions, such as unusual transaction amounts, risky payment formats, high-risk currencies, and suspicious transaction timing.
 
 
-<h2 align="center">Amount distribution by laundering class</h2>
+<h2 align="center">💰 Amount distribution by laundering class</h2>
 
 <p align="center"><img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/a07c94d3-6850-4732-85b0-9d2dd2ac1357" /></p>
 <p align="center"><img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/80d162fa-242f-4675-9ca2-77a3fa484d79" /></p>
 
 Laundering transactions tend to occur at higher transaction values, with a higher median log transaction amount compared to normal transactions. This suggests that transaction amount may be a useful feature for identifying suspicious financial activity.
 
-<h2 align="center">Laundering Rate by Payment Format and Receiving Currency</h2>
+<h2 align="center">💳 Laundering Rate by Payment Format and Receiving Currency</h2>
 
 <p align="center"><img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/7c35a49a-8ce4-48a8-91c1-e05c0b026b52" />
 <p align="center"><img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/a6e46ad9-4d15-4597-8555-0abec54edf16" />
 
 Laundering activity varies across payment formats and currencies. ACH payments show the highest laundering rate among payment methods, while certain receiving currencies such as Saudi Riyal exhibit higher laundering activity compared to others. These patterns suggest that payment channels and currency usage may serve as useful indicators for identifying suspicious transactions.
 
-<h2 align="center">Laundering Rate by Hour of Day </h2>
+<h2 align="center">🕒 Laundering Rate by Hour of Day </h2>
 
 <p align="center"><img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/780d3627-b2f6-4612-af7e-9bed9ec94186" />
 
 Laundering activity is minimal during most hours of the day but shows a sharp spike late at night around hour 23. This suggests that transaction timing may be an important behavioural signal for detecting suspicious activity.
 
-<h2 align="center">Mann-Whitney U test </h2>
+<h2 align="center">🧪 Mann-Whitney U test </h2>
 
-The Mann–Whitney U test produced a p-value of 9.85 \times 10^{-29}, indicating a statistically significant difference in transaction amounts between normal and laundering transactions. This suggests that transaction amount is a meaningful feature for identifying suspicious financial activity.
+The Mann–Whitney U test produced a p-value of **9.85 × 10⁻²⁹**, indicating a statistically significant difference in transaction amounts between normal and laundering transactions. This suggests that transaction amount is a meaningful feature for identifying suspicious financial activity.
 
-<h2 align="center">Cohen's d</h2>
+<h2 align="center">📏 Cohen's d</h2>
 
 Cohen’s d of 0.078 indicates a very small effect size, suggesting that although transaction amounts differ statistically between normal and laundering transactions, the magnitude of the difference is small and additional features are needed for effective detection.
 
-<h2 align="center">Effect size</h2>
+<h2 align="center">📊 Effect size</h2>
 
 The median transaction amount for laundering transactions (8,784.93) is significantly higher than normal transactions (1,925.73), indicating that suspicious transactions tend to involve larger payment amounts.
 
@@ -185,7 +184,7 @@ Linear and tree models were developed and compared. The goal was to identify a m
 Different thresholds were populated to find the optimum precision, recall, false positive and false negative. 
 
 
-<h2 align="center">Logistic Regression (Baseline Model) </h2>
+<h2 align="center">📈 Logistic Regression (Baseline Model) </h2>
 
 • Baseline linear model  
 
@@ -204,7 +203,7 @@ Different thresholds were populated to find the optimum precision, recall, false
 <p>One advantage of logistic regression is its interpretability. Each feature has a coefficient that indicates how it influences the probability of a transaction being classified as laundering. Positive coefficients increase the likelihood of suspicious activity, while negative coefficients reduce it. This makes the model useful for understanding which factors contribute most to potential money laundering behaviour.
 
 
-<h2 align="center">Balanced Random Forest</h2>
+<h2 align="center">🌳 Balanced Random Forest</h2>
 
 • Undersampling per tree 
 
@@ -218,7 +217,7 @@ Different thresholds were populated to find the optimum precision, recall, false
 
 <p>By combining predictions from many decision trees, Balanced Random Forest reduces variance and improves robustness when identifying rare events such as laundering transactions. This ensemble approach allows the model to consistently detect suspicious behaviour across different transaction patterns.
 
-<h2 align="center">XGBoost</h2>
+<h2 align="center">⚡ XGBoost</h2>
 
 • Gradient boosting algorithm 
 
@@ -299,7 +298,7 @@ Behavioural features such as transaction frequency, rolling transaction volatili
 
 ## 💪 Strengths
 
-<h2 align="center"><u>Time-Aware Modeling Framework</u></h2>
+<h2 align="center"><u>⏳ Time-Aware Modeling Framework</u></h2>
 
 A chronological train-test split was implemented using the 80th percentile timestamp to simulate real-world deployment conditions. This approach prevents temporal leakage, which is a common source of inflated performance in financial crime modeling.
 
@@ -311,7 +310,7 @@ Key benefits include:
 
 Many AML modeling failures stem from inadvertent leakage via global aggregations; this framework explicitly mitigates that risk.
 
-<h2 align="center"><u>Comprehensive Behavioral Feature Engineering</u></h2>
+<h2 align="center"><u>🔬 Comprehensive Behavioral Feature Engineering</u></h2>
 
 The model incorporates short-term behavioral indicators such as:
 - Rolling 7-day transaction count
@@ -328,7 +327,7 @@ These features capture dynamic laundering behaviors including:
 
 Behavioral modeling enhances detection of new or emerging laundering patterns that may not yet be reflected in historical risk scores.
 
-<h2 align="center"><u>Appropriate Rare-Event Evaluation Metrics </u></h2>
+<h2 align="center"><u>📊 Appropriate Rare-Event Evaluation Metrics </u></h2>
 
 Traditional metrics such as accuracy are misleading in datasets with <1% positive class prevalence.
 This study appropriately emphasizes:
@@ -337,7 +336,7 @@ This study appropriately emphasizes:
 
 PR-AUC is especially relevant because it directly evaluates minority-class ranking performance, which aligns with AML investigation workflows.
 
-<h2 align="center"><u>Comparative Model Benchmarking</u></h2>
+<h2 align="center"><u>⚖️ Comparative Model Benchmarking</u></h2>
 
 Multiple modeling approaches were evaluated:
 - Logistic Regression (linear baseline)
@@ -351,13 +350,13 @@ This comparative framework:
 
 ## ⚠️ Limitations
 
-<h2 align="center"><u>Lack of External Risk Indicators </u></h2>
+<h2 align="center"><u>🌍 Lack of External Risk Indicators </u></h2>
 
 The dataset excludes key contextual variables such as country risk ratings, sanctions exposure, Know YourCustomer(KYC) attributes, Politically Exposed Person(PEP) flags, and beneficial ownership data.
 
 Without these enrichment features, risk scoring lacks broader regulatory context.
 
-<h2 align="center"><u>Structural Constraints from Extreme Imbalance </u></h2>
+<h2 align="center"><u>⚠️ Structural Constraints from Extreme Imbalance </u></h2>
 
 With a laundering rate of approximately 0.2%:
 - Precision is inherently limited.
@@ -368,7 +367,7 @@ This limitation is intrinsic to rare-event classification rather than purely met
 
 ## 💡 Recommendations
 
-<h2 align="center"><u>Model Selection for Production </u></h2>
+<h2 align="center"><u>🚀 Model Selection for Production </u></h2>
 
 Based on comparative evaluation, the recommended model for initial deployment is:
 - Balanced Random Forest (BRF)
@@ -381,7 +380,7 @@ The final production selection should consider:
 - Computational efficiency
 - Governance interpretability requirements
 
-<h2 align="center"><u>Use Model Output as a Risk Score</u></h2>
+<h2 align="center"><u>📉 Use Model Output as a Risk Score</u></h2>
 
 The predictive model should not function as a deterministic binary classifier. Instead, it should generate a continuous risk score.
 
@@ -392,7 +391,7 @@ Advantages:
 
 This approach aligns with modern risk-based AML frameworks.
 
-<h2 align="center"><u>Combine Model with Rule-Based Monitoring </u></h2>
+<h2 align="center"><u>🔗 Combine Model with Rule-Based Monitoring </u></h2>
 
 Pure machine learning systems may overlook edge-case regulatory rules. A hybrid system is recommended:
 - Machine learning model for probabilistic ranking.
