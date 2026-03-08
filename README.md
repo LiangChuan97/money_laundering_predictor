@@ -39,6 +39,7 @@ Key highlights:
 - [Business Problem](#-business-problem)
 - [Dataset](#-dataset)
 - [Data Cleaning](#-data-cleaning)
+- [Exploratory Data Analysis](-exploratory-data-analysis)
 - [Feature Engineering](#-feature-engineering)
 - [Model Development](#-model-development)
 - [Model Evaluation](#-model-evaluation)
