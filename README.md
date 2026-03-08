@@ -35,7 +35,7 @@ Key highlights:
 
 ## 📑 Table of Contents
 
-- [Project Overview](#project-overview)
+- [Project Overview](#📌Project-Overview)
 - [Business Problem](#business-problem)
 - [Dataset](#dataset)
 - [Project Workflow](#project-workflow)
