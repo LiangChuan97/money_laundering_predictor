@@ -36,21 +36,19 @@ Key highlights:
 ## 📑 Table of Contents
 
 - [Project Overview](#-project-Overview)
-- [Business Problem](#business-problem)
-- [Dataset](#dataset)
-- [Project Workflow](#project-workflow)
-- [Feature Engineering](#feature-engineering)
-- [Model Development](#model-development)
-- [Model Evaluation](#model-evaluation)
-- [Feature Importance](#feature-importance-analysis)
-- [Tech Stack](#tech-stack)
-- [Strengths](#strengths)
-- [Limitations](#limitation)
-- [Recommendations](#recommendations)
-- [Business Recommendations](#business-recommendations)
-- [Conclusion](#conclusion)
-  
-***
+- [Business Problem](#-business-problem)
+- [Dataset](#-dataset)
+- [Data Cleaning](#-data-cleaning)
+- [Feature Engineering](#-feature-engineering)
+- [Model Development](#-model-development)
+- [Model Evaluation](#-model-evaluation)
+- [Key Results](#-key-results)
+- [Feature Importance](#-feature-importance-analysis)
+- [Tech Stack](#-tech-stack)
+- [Strengths](#-strengths)
+- [Limitations](#-limitation)
+- [Recommendations](#-recommendations)
+- [Conclusion](#-conclusion)
 
 ## 📌 Project Overview
 
@@ -60,15 +58,12 @@ Machine learning approaches offer improved adaptability but must address signifi
 
 In the present dataset, laundering transactions constitute approximately 0.2% of total observations, making detection a rare-event classification problem.
 
-
 ## 🌍 Why This Matters
 
 Money laundering is estimated to represent **2–5% of global GDP annually**.  
 Financial institutions rely on AML monitoring systems to detect suspicious activity while balancing operational investigation costs.
 
 This project demonstrates how **machine learning and behavioural feature engineering** can improve detection performance under extreme class imbalance conditions.
-
-***
 
 ## 🏦 Business Problem
 
@@ -88,9 +83,6 @@ Goals:
 - Evaluate performance using precision-recall metrics.
 - Provide actionable recommendations for AML implementation.
 
-
-***
-
 ## 🗂 Dataset
 
 The dataset contains IBM Transactions for Anti Money Laundering (AML) which was sourced from <a href = "https://www.kaggle.com/datasets/ealtman2019/ibm-transactions-for-anti-money-laundering-aml/data"> kaggle. </a> 
@@ -108,12 +100,8 @@ The dataset consists of transactional records containing:
 - Payment format
 
 All data were historical and anonymized.
-  
-***
 
-## ⚙️ Project Workflow
-
-1. Data Cleaning
+## 🧹 Data Cleaning
 
 The following preprocessing steps were applied:
 - Conversion of timestamp to datetime format
@@ -166,8 +154,6 @@ Cohen’s d of 0.078 indicates a very small effect size, suggesting that althoug
 
 The median transaction amount for laundering transactions (8,784.93) is significantly higher than normal transactions (1,925.73), indicating that suspicious transactions tend to involve larger payment amounts.
 
-***
-
 ## ⚙️ Feature Engineering
 
 Behavioral indicators were constructed to capture short-term transaction dynamics:
@@ -181,8 +167,6 @@ Behavioral indicators were constructed to capture short-term transaction dynamic
 - Suspicious Format Indicator
   
 These features aim to detect structuring, burst activity, and anomalous behavior.
-
-***
 
 ## 🧠 Model Development
 
@@ -253,8 +237,6 @@ The <code>scale_pos_weight</code> parameter was also used to address the severe 
 
 <p>XGBoost achieved strong predictive performance and improved upon the baseline logistic regression model. However, the Balanced Random Forest ultimately performed best in detecting laundering transactions due to its ability to handle class imbalance more effectively.
 
-***
-
 ## 📊 Model Evaluation
 
 MAS requires that:
@@ -300,16 +282,11 @@ Cost assumptions:
 
 Its ability to handle class imbalance through undersampling makes it particularly effective for rare-event detection in AML systems.
 
-***
-
 ## 🌟 Feature Importance
 
 Payment format and high-risk payment indicators are the strongest predictors of laundering activity. 
 
 Behavioural features such as transaction frequency, rolling transaction volatility, and recent transaction totals also play an important role, suggesting that unusual transaction patterns are key signals for detecting suspicious financial activity.
-
-
-***
 
 ## 🧰 Tech Stack
 
@@ -319,9 +296,7 @@ Behavioural features such as transaction frequency, rolling transaction volatili
 🌲 XGBoost  
 📈 Matplotlib / Seaborn
 
-***
-
-7. Strengths
+## 💪 Strengths
 
 <h2 align="center"><u>Time-Aware Modeling Framework</u></h2>
 
@@ -373,8 +348,6 @@ This comparative framework:
 - Prevents over-reliance on a single algorithm.
 - Supports governance review through benchmarking.
 
-*** 
-
 ## ⚠️ Limitations
 
 <h2 align="center"><u>Lack of External Risk Indicators </u></h2>
@@ -392,8 +365,6 @@ With a laundering rate of approximately 0.2%:
 
 This limitation is intrinsic to rare-event classification rather than purely methodological.
 
-***
-
 ## 💡 Recommendations
 
 <h2 align="center"><u>Model Selection for Production </u></h2>
@@ -408,10 +379,6 @@ The final production selection should consider:
 - Stability across temporal splits
 - Computational efficiency
 - Governance interpretability requirements
-
-*** 
-
-## 💡 Business Recommendations
 
 <h2 align="center"><u>Use Model Output as a Risk Score</u></h2>
 
@@ -431,8 +398,6 @@ Pure machine learning systems may overlook edge-case regulatory rules. A hybrid 
 - Rule-based triggers for regulatory compliance requirements.
 - Combined alert scoring mechanism.
 Hybrid architecture improves robustness and regulatory acceptance.
-
-*** 
 
 ## 🏁 Conclusion
 
