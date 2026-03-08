@@ -1,6 +1,58 @@
-### 🏦 Imbalance-Resilient Machine Learning for transaction-level money laundering detection ###
+<h1 align="center">🏦 Money Laundering Detection with Machine Learning</h1>
+
+<p align="center">
+Imbalance-resilient modelling for transaction-level AML detection
+</p>
+
+<p align="center">
+<img src="https://img.shields.io/badge/Python-3.14-blue">
+<img src="https://img.shields.io/badge/Model-Balanced%20Random%20Forest-green">
+<img src="https://img.shields.io/badge/Domain-AML-orange">
+<img src="https://img.shields.io/badge/Dataset-IBM%20Transactions-purple">
+</p>
+
+## 🚀 Project Summary
+
+This project builds a machine learning system to detect suspicious financial transactions in highly imbalanced AML data.
+
+Key highlights:
+
+- Dataset with **0.2% laundering rate**
+- Behavioural feature engineering using **rolling transaction signals**
+- Compared **Logistic Regression, Balanced Random Forest, and XGBoost**
+- **Balanced Random Forest achieved best performance**
+- Reduced **false negatives from 60 → 8**
+- Achieved **lowest operational cost in evaluation framework**
+
+## 🧠 Skills Demonstrated
+
+- Imbalanced classification modelling
+- AML behavioural feature engineering
+- Precision–Recall evaluation for rare events
+- Time-aware model validation
+- Ensemble modelling (Balanced Random Forest, XGBoost) and linear baseline modelling (Logistic Regression)
+- Cost-sensitive model evaluation
+
+## 📑 Table of Contents
+
+- [Project Overview](#project-overview)
+- [Business Problem](#business-problem)
+- [Dataset](#dataset)
+- [Project Workflow](#project-workflow)
+- [Feature Engineering](#feature-engineering)
+- [Model Development](#model-development)
+- [Model Evaluation](#model-evaluation)
+- [Feature Importance](#feature-importance-analysis)
+- [Tech Stack](#tech-stack)
+- [Strengths](#strengths)
+- [Limitations](#limitation)
+- [Recommendations](#recommendations)
+- [Business Recommendations](#business-recommendations)
+- [Conclusion](#conclusion)
+  
 ***
-<h2 align="center"><u>Project Overview</u></h2>
+
+## 📌 Project Overview
 
 Anti-Money Laundering (AML) systems aim to identify suspicious financial transactions indicative of illicit activity. Traditional rule-based systems generate excessive false positives and fail to capture evolving laundering strategies.
 
@@ -8,15 +60,17 @@ Machine learning approaches offer improved adaptability but must address signifi
 
 In the present dataset, laundering transactions constitute approximately 0.2% of total observations, making detection a rare-event classification problem.
 
-The project includes:
-	<p>• exploratory data analysis to identify factors contributing to laundering cases</p>
-	<p>• feature engineering to capture recent behavioural patterns, to provide background information about the account</p>
-	<p>• model comparison across multiple regression algorithms</p>
-	<p>• discussion of stengths and limitations of model</p>
+
+## 🌍 Why This Matters
+
+Money laundering is estimated to represent **2–5% of global GDP annually**.  
+Financial institutions rely on AML monitoring systems to detect suspicious activity while balancing operational investigation costs.
+
+This project demonstrates how **machine learning and behavioural feature engineering** can improve detection performance under extreme class imbalance conditions.
 
 ***
 
-<h2 align="center"><u>Business Problem</u></h2>
+## 🏦 Business Problem
 
 The primary objective of this study is to develop a predictive model capable of identifying laundering transactions with improved recall while maintaining operationally acceptable precision.
 
@@ -37,7 +91,7 @@ Goals:
 
 ***
 
-<h2 align="center"><u>Dataset</u></h2>
+## 🗂 Dataset
 
 The dataset contains IBM Transactions for Anti Money Laundering (AML) which was sourced from <a href = "https://www.kaggle.com/datasets/ealtman2019/ibm-transactions-for-anti-money-laundering-aml/data"> kaggle. </a> 
 
@@ -57,7 +111,7 @@ All data were historical and anonymized.
   
 ***
 
-<h2 align="center"><u>Project Workflow</u></h2>
+## ⚙️ Project Workflow
 
 1. Data Cleaning
 
@@ -67,7 +121,7 @@ The following preprocessing steps were applied:
 - Handling of missing values
 - Data Type Validation
 
-2. Exploratory Data Analysis (EDA)
+## 🔍 Exploratory Data Analysis
 
 Key questions explored:
 - Are the transaction amounts significantly different between normal transactions and laundering transactions?
@@ -82,21 +136,21 @@ These questions help identify patterns, anomalies, and key risk indicators assoc
 
 <h2 align="center">Amount distribution by laundering class</h2>
 
-<img width="350" height="235" alt="image" src="https://github.com/user-attachments/assets/a07c94d3-6850-4732-85b0-9d2dd2ac1357" />
-<img width="343" height="235" alt="image" src="https://github.com/user-attachments/assets/80d162fa-242f-4675-9ca2-77a3fa484d79" />
+<p align="center"><img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/a07c94d3-6850-4732-85b0-9d2dd2ac1357" /></p>
+<p align="center"><img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/80d162fa-242f-4675-9ca2-77a3fa484d79" /></p>
 
 Laundering transactions tend to occur at higher transaction values, with a higher median log transaction amount compared to normal transactions. This suggests that transaction amount may be a useful feature for identifying suspicious financial activity.
 
 <h2 align="center">Laundering Rate by Payment Format and Receiving Currency</h2>
 
-<img width="431" height="276" alt="image" src="https://github.com/user-attachments/assets/7c35a49a-8ce4-48a8-91c1-e05c0b026b52" />
-<img width="436" height="286" alt="image" src="https://github.com/user-attachments/assets/a6e46ad9-4d15-4597-8555-0abec54edf16" />
+<p align="center"><img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/7c35a49a-8ce4-48a8-91c1-e05c0b026b52" />
+<p align="center"><img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/a6e46ad9-4d15-4597-8555-0abec54edf16" />
 
 Laundering activity varies across payment formats and currencies. ACH payments show the highest laundering rate among payment methods, while certain receiving currencies such as Saudi Riyal exhibit higher laundering activity compared to others. These patterns suggest that payment channels and currency usage may serve as useful indicators for identifying suspicious transactions.
 
 <h2 align="center">Laundering Rate by Hour of Day </h2>
 
-<img width="345" height="235" alt="image" src="https://github.com/user-attachments/assets/780d3627-b2f6-4612-af7e-9bed9ec94186" />
+<p align="center"><img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/780d3627-b2f6-4612-af7e-9bed9ec94186" />
 
 Laundering activity is minimal during most hours of the day but shows a sharp spike late at night around hour 23. This suggests that transaction timing may be an important behavioural signal for detecting suspicious activity.
 
@@ -114,7 +168,7 @@ The median transaction amount for laundering transactions (8,784.93) is signific
 
 ***
 
-3. Feature Engineering
+## ⚙️ Feature Engineering
 
 Behavioral indicators were constructed to capture short-term transaction dynamics:
 - Rolling 7-day volatility
@@ -130,7 +184,7 @@ These features aim to detect structuring, burst activity, and anomalous behavior
 
 ***
 
-4. Model Development
+## 🧠 Model Development
 
 Given 0.2% base rate:
 - PR-AUC significantly above baseline (0.002)
@@ -201,7 +255,7 @@ The <code>scale_pos_weight</code> parameter was also used to address the severe 
 
 ***
 
-5. Model Evaluation
+## 📊 Model Evaluation
 
 MAS requires that:
 - Institutions must detect suspicious transactions
@@ -223,22 +277,32 @@ probabilistically.
 | | ROC-AUC | PR-AUC | Recall | Precision |
 |---|---|---|---|---|
 | Logistics Regression | 0.93005 | 0.01355 | 0.8309 | 0.0154 |
-| Balanced RandomForest| 0.95936 | 0.052514 | 0.98 | 0.1544 |
+| ⭐ Balanced RandomForest| 0.95936 | 0.052514 | 0.98 | 0.1544 |
 | XGBoost | 0.92651 | 0.04974| 0.1544 | 0.0602 |
 
-Assuming:
-<p>C_FN = 50000 - Cost of Missing Laundering (False Negative)
-<p>C_FP = 50 - Cost of Investigating a False Alert (False Positive)
+Cost assumptions:
+<p>Falae Negative = $50,000 
+<p>False Positice = $50
 
 | | False Negative | False Positive | Total Cost | 
 |---|---|---|---|
 | Logistics Regression | 60 | 21675 | 4083.75 | 
-| Balanced RandomForest| 8 | 29786 | 1889.30 | 
+| ⭐ Balanced RandomForest| 8 | 29786 | 1889.30 | 
 | XGBoost | 345 | 984 | 17299.20 | 
 
-Balanced Random Forest was selected as the final model because it achieved the highest recall and PR-AUC, detected the most laundering transactions, and resulted in the lowest overall cost. Its ability to handle class imbalance through undersampling makes it particularly effective for rare-event detection in AML systems.
+## 🏆 Key Results
 
-<h2 align="center">Feature Importance Analysis</h2>
+- Balanced Random Forest achieved **98% recall**
+- Reduced **false negatives from 60 → 8**
+- Achieved **lowest operational cost**
+- Identified behavioural indicators of suspicious transactions
+- Achieved **highest PR-AUC**
+
+Its ability to handle class imbalance through undersampling makes it particularly effective for rare-event detection in AML systems.
+
+***
+
+## 🌟 Feature Importance
 
 Payment format and high-risk payment indicators are the strongest predictors of laundering activity. 
 
@@ -247,12 +311,13 @@ Behavioural features such as transaction frequency, rolling transaction volatili
 
 ***
 
-6. Tech Stack
+## 🧰 Tech Stack
 
-<p>Python
-<p>Pandas
-<p>Scikit-learn
-<p>Matplotlib / Seaborn
+🐍 Python  
+📊 Pandas  
+🤖 Scikit-learn  
+🌲 XGBoost  
+📈 Matplotlib / Seaborn
 
 ***
 
@@ -310,7 +375,7 @@ This comparative framework:
 
 *** 
 
-8. Limitation
+## ⚠️ Limitations
 
 <h2 align="center"><u>Lack of External Risk Indicators </u></h2>
 
@@ -329,7 +394,7 @@ This limitation is intrinsic to rare-event classification rather than purely met
 
 ***
 
-9. Recommendations
+## 💡 Recommendations
 
 <h2 align="center"><u>Model Selection for Production </u></h2>
 
@@ -346,7 +411,7 @@ The final production selection should consider:
 
 *** 
 
-10. Business Recommendations
+## 💡 Business Recommendations
 
 <h2 align="center"><u>Use Model Output as a Risk Score</u></h2>
 
@@ -369,7 +434,7 @@ Hybrid architecture improves robustness and regulatory acceptance.
 
 *** 
 
-11. Conclusion
+## 🏁 Conclusion
 
 This study demonstrates that behaviorally engineered features combined with smoothed entity risk encoding significantly enhance laundering detection under extreme class imbalance.
 Balanced ensemble methods provide superior recall compared to linear models. However, further gains require incorporation of network-level features and additional contextual risk signals.
