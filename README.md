@@ -408,7 +408,7 @@ The proposed framework provides a scalable foundation for AML transaction monito
 
 ## 📑 Project Presentation
 
-🔗 [View Full Presentation]([https://your-link-here](https://drive.google.com/file/d/1f0JEwUXKK38_Ht9tP5XhfAfj8KnBBYhy/view?usp=sharing])
+🔗 [View Full Presentation](https://drive.google.com/file/d/1f0JEwUXKK38_Ht9tP5XhfAfj8KnBBYhy/view?usp=sharing)
 
 
 
