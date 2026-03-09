@@ -50,6 +50,7 @@ Key highlights:
 - [Limitations](#-limitations)
 - [Recommendations](#-recommendations)
 - [Conclusion](#-conclusion)
+- [Project Presentation](#-project-presentation)
 
 ## 📌 Project Overview
 
@@ -404,6 +405,10 @@ Hybrid architecture improves robustness and regulatory acceptance.
 This study demonstrates that behaviorally engineered features combined with smoothed entity risk encoding significantly enhance laundering detection under extreme class imbalance.
 Balanced ensemble methods provide superior recall compared to linear models. However, further gains require incorporation of network-level features and additional contextual risk signals.
 The proposed framework provides a scalable foundation for AML transaction monitoring and future model refinement.
+
+## 📑 Project Presentation
+
+🔗 [View Full Presentation]([https://your-link-here](https://drive.google.com/file/d/1f0JEwUXKK38_Ht9tP5XhfAfj8KnBBYhy/view?usp=sharing))
 
 
 
